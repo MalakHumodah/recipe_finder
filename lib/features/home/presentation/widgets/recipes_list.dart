@@ -1,6 +1,5 @@
 import 'package:recipe_finder/features/home/presentation/presentation.export.dart';
 
-
 class RecipesList extends StatelessWidget {
   const RecipesList({super.key});
 
@@ -9,6 +8,16 @@ class RecipesList extends StatelessWidget {
     return BlocBuilder<HomeBloc, HomeState>(builder: (context, state) {
       if (state.homeStateStatus == HomeStateStatus.success) {
         return ShowRecipesList(meals: state.meals);
+      } else if (state.homeStateStatus == HomeStateStatus.error) {
+        return Expanded(
+          child: Center(
+            child: CustomText.titleText(
+              txt: state.errorMessage,
+              textAlign: TextAlign.center,
+              color: Theme.of(context).primaryColor,
+            ),
+          ),
+        );
       } else {
         return LinearProgressIndicator();
       }
@@ -30,7 +39,7 @@ class ShowRecipesList extends StatelessWidget {
           child: CustomText.titleText(
             txt: 'Search your favourite meal recipe',
             textAlign: TextAlign.center,
-            color: Theme.of(context).primaryColor
+            color: Theme.of(context).primaryColor,
           ),
         ),
         child: GridView.builder(

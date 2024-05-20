@@ -1,7 +1,4 @@
-import 'package:equatable/equatable.dart';
-import 'package:recipe_finder/features/home/data/models/meal_model.dart';
-
-import '../../data/models/ingredients_measure_model.dart';
+import 'package:recipe_finder/features/home/domain/home_domain.export.dart';
 
 class MealEntity extends Equatable {
   final String idMeal;

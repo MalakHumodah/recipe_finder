@@ -16,10 +16,19 @@ class NetworkService {
         Uri.parse(baseUrl + Keys.apiKey + url),
         headers: headers,
       );
-      return ValidResponse(
-          statusCode: response.statusCode, body: response.body);
+      if (response.statusCode == 200) {
+        return ValidResponse(
+          statusCode: response.statusCode,
+          body: response.body,
+        );
+      } else {
+        return ValidResponse(
+          statusCode: response.statusCode,
+          message: '${response.statusCode}\n${response.reasonPhrase}',
+        );
+      }
     } catch (e) {
-      return ValidResponse(statusCode: 500, message: 'error : $e');
+      return ValidResponse(statusCode: 500, message: 'Error : $e');
     }
   }
 

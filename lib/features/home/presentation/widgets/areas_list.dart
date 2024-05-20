@@ -13,7 +13,7 @@ class AreasFilter extends StatelessWidget {
         },
         icon: Image.asset(
           'assets/icons/icons8-earth-100.png',
-          width: IconSizes.mediumIcon,
+          width: IconSizes.largeIcon,
         ),
         itemBuilder: (BuildContext context) {
           return state.areasNames

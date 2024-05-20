@@ -1,4 +1,5 @@
+import 'package:dartz/dartz.dart';
+
 abstract class RecipesUseCase<T, P> {
-  // Future<T> getMealByName(MealByNameParameters parameters);
-  Future<T> call(P parameters);
+  Future<Either<String, T>> call(P parameters);
 }

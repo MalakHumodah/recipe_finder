@@ -31,7 +31,7 @@ class CategoryCard extends StatelessWidget {
               children: [
                 Image.asset(
                   'assets/icons/img.png',
-                  height: IconSizes.smallIcon,
+                  height: IconSizes.mediumIcon,
                   color:Theme.of(context).primaryColor,
                 ),
                  SizedBox(width: SpacesSizes.smallSpace,),

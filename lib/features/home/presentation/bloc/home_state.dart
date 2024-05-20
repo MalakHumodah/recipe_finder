@@ -10,8 +10,10 @@ class HomeState extends Equatable {
   final HomeStateStatus homeStateStatus;
   final List<MealEntity> meals;
   final MealEntity mealEntity;
+  final String errorMessage;
 
   const HomeState({
+    this.errorMessage = '',
     this.categoriesNames = const [],
     this.areasNames = const [],
     this.mealEntity = const MealEntity(),
@@ -20,6 +22,7 @@ class HomeState extends Equatable {
   });
 
   HomeState copyWith({
+    String? errorMessage,
     List<String>? categoriesNames,
     List<String>? areasNames,
     List<MealEntity>? meals,
@@ -27,6 +30,7 @@ class HomeState extends Equatable {
     HomeStateStatus? homeStateStatus,
   }) {
     return HomeState(
+      errorMessage: errorMessage ?? this.errorMessage,
       categoriesNames: categoriesNames ?? this.categoriesNames,
       areasNames: areasNames ?? this.areasNames,
       meals: meals ?? this.meals,
@@ -42,5 +46,6 @@ class HomeState extends Equatable {
         mealEntity,
         categoriesNames,
         areasNames,
+        errorMessage,
       ];
 }

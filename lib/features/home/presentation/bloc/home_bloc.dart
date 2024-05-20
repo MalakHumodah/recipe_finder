@@ -39,13 +39,29 @@ class HomeBloc extends Bloc<HomeEvents, HomeState> {
   ) async {
     emit(state.copyWith(homeStateStatus: HomeStateStatus.loading));
 
-    var meals = await getMealsUseCases
-        .call(MealByNameParameters(name: searchController.text));
+    // var meals = await getMealsUseCases
+    //     .call(MealByNameParameters(name: searchController.text));
 
-    emit(state.copyWith(
-      meals: meals.meals,
-      homeStateStatus: HomeStateStatus.success,
-    ));
+    final result = await getMealsUseCases
+        .call(MealByNameParameters(name: searchController.text));
+    result.fold(
+      (l) => emit(
+        state.copyWith(
+          errorMessage: l,
+          homeStateStatus: HomeStateStatus.error,
+        ),
+      ),
+      (r) => emit(
+        state.copyWith(
+          meals: r.meals,
+          homeStateStatus: HomeStateStatus.success,
+        ),
+      ),
+    );
+    // emit(state.copyWith(
+    //   meals: meals.meals,
+    //   homeStateStatus: HomeStateStatus.success,
+    // ));
   }
 
   FutureOr<void> _filterByCategories(
@@ -84,12 +100,29 @@ class HomeBloc extends Bloc<HomeEvents, HomeState> {
       homeStateStatus: HomeStateStatus.loading,
     ));
 
-    var customMeal =
-        await getMealsUseCases.call(MealByNameParameters(name: event.name));
+    final result = await getMealsUseCases
+        .call(MealByNameParameters(name: searchController.text));
+    result.fold(
+      (l) => emit(
+        state.copyWith(
+          errorMessage: l,
+          homeStateStatus: HomeStateStatus.error,
+        ),
+      ),
+      (r) => emit(
+        state.copyWith(
+          mealEntity: r.meals.first,
+          homeStateStatus: HomeStateStatus.success,
+        ),
+      ),
+    );
 
-    emit(state.copyWith(
-      mealEntity: customMeal.meals.first,
-      homeStateStatus: HomeStateStatus.success,
-    ));
+    // var customMeal =
+    //     await getMealsUseCases.call(MealByNameParameters(name: event.name));
+    //
+    // emit(state.copyWith(
+    //   mealEntity: customMeal.meals.first,
+    //   homeStateStatus: HomeStateStatus.success,
+    // ));
   }
 }

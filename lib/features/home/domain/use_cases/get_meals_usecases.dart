@@ -1,10 +1,5 @@
-import 'package:recipe_finder/core/utils/recipe_use_cases.dart';
-import 'package:recipe_finder/features/home/domain/entity/meal_entity.dart';
-import 'package:recipe_finder/features/home/domain/params/area_parameters.dart';
-import 'package:recipe_finder/features/home/domain/params/category_parameter.dart';
-import '../params/meal_by_name_parameter.dart';
-import '../repositories/data_filter_repo.dart';
-import '../repositories/data_list_repo.dart';
+import 'package:dartz/dartz.dart';
+import 'package:recipe_finder/features/home/domain/home_domain.export.dart';
 
 class GetMealsUseCases
     extends RecipesUseCase<MealsEntitiesList, MealByNameParameters> {
@@ -15,7 +10,7 @@ class GetMealsUseCases
       {required this.mealsRepository, required this.mealsListRepository});
 
   @override
-  Future<MealsEntitiesList> call(MealByNameParameters parameters) async {
+  Future<Either<String, MealsEntitiesList>> call(MealByNameParameters parameters) async {
     return await mealsRepository.getMealsByName(parameters);
   }
 
@@ -29,7 +24,7 @@ class GetMealsUseCases
     return await mealsRepository.getMealsByArea(parameters);
   }
 
-  Future<MealEntity> getRandomMealUseCase() async {
+  Future<Either<String, MealEntity>> getRandomMealUseCase() async {
     return await mealsRepository.getRandomMeal();
   }
 

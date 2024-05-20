@@ -32,6 +32,8 @@ class RecipeDetails extends StatelessWidget {
             ),
             SavedIcon(
               meal: meal,
+              iconSizes: IconSizes.mediumIcon,
+              radius: BorderRadiusSizes.mediumRadius,
             ),
           ],
         ),

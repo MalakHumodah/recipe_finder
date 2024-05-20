@@ -11,9 +11,9 @@ class ImageSizes {
 }
 
 class IconSizes {
-  static const double smallIcon = 32;
-  static const double mediumIcon = 64;
-  static const double largeIcon = 128;
+  static const double smallIcon = 24;
+  static const double mediumIcon = 32;
+  static const double largeIcon = 64;
 }
 
 class BorderRadiusSizes {

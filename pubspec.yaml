@@ -38,6 +38,7 @@ dependencies:
   equatable: ^2.0.5
   cached_network_image: ^3.3.1
   flutter_slidable: ^3.1.0
+  flutter_svg: ^2.0.10+1
 
 
 
@@ -71,6 +72,9 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/icons/
+    - assets/types/
+    - assets/back.svg
+    - assets/bubbles.svg
 
 
 

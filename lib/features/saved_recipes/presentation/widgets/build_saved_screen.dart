@@ -11,7 +11,10 @@ import '../bloc/saved_recipes_event.dart';
 class BuildSavedScreen extends StatelessWidget {
   final List<MealEntity> savedRecipes;
 
-  const BuildSavedScreen({super.key, required this.savedRecipes});
+  const BuildSavedScreen({
+    super.key,
+    required this.savedRecipes,
+  });
 
   @override
   Widget build(BuildContext context) {

@@ -27,7 +27,7 @@ class BuildScreen extends StatelessWidget {
                 },
                 icon: const Icon(
                   Icons.arrow_back,
-                  size: IconSizes.smallIcon,
+                  size: IconSizes.mediumIcon,
                 )),
           ),
           Padding(

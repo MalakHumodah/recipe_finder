@@ -1,6 +1,5 @@
 import 'package:recipe_finder/features/home/presentation/presentation.export.dart';
 
-
 class RecipeCard extends StatelessWidget {
   final MealEntity meal;
 
@@ -16,21 +15,18 @@ class RecipeCard extends StatelessWidget {
         onTap: () async {
           context.read<HomeBloc>().add(GetRecipeDetails(meal.strMeal));
           Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => const RecipeDetailsView()));
+              context, MaterialPageRoute(builder: (context) => const RecipeDetailsView()));
         },
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+        child: Stack(
           children: [
-            CachedImage(
-              imageUrl: '${meal.strMealThumb}/preview',
-              width: ImageSizes.largeImage,
-              radius: BorderRadiusSizes.mediumRadius,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                CachedImage(
+                  imageUrl: '${meal.strMealThumb}/preview',
+                  width: ImageSizes.largeImage,
+                  radius: BorderRadiusSizes.mediumRadius,
+                ),
                 Flexible(
                   child: Padding(
                     padding: const EdgeInsets.symmetric(
@@ -41,8 +37,12 @@ class RecipeCard extends StatelessWidget {
                     ),
                   ),
                 ),
-                SavedIcon(meal: meal),
               ],
+            ),
+            Positioned(
+              right: 0,
+              top: 75,
+              child: SavedIcon(meal: meal),
             ),
           ],
         ),

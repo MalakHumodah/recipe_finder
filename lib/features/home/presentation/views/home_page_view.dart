@@ -14,37 +14,36 @@ class _BuildHome extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Container(
-          color: Theme.of(context).hoverColor,
-          height: MediaQuery.of(context).size.height / 4.1,
-          width: double.infinity,
-          child: SafeArea(
-            child: Column(
-              children: const [
-                Padding(
-                  padding: EdgeInsets.symmetric(
-                      horizontal: PaddingSizes.largePadding),
-                  child: Row(
-                    children: [
-                      SearchBarView(),
-                      AreasFilter(),
-                    ],
-                  ),
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Theme.of(context).hoverColor,
+        toolbarHeight: MediaQuery.of(context).size.height /5.5,
+        flexibleSpace: SafeArea(
+          child: Column(
+            children: const [
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: PaddingSizes.largePadding),
+                child: Row(
+                  children: [
+                    SearchBarView(),
+                    AreasFilter(),
+                  ],
                 ),
-                Padding(
-                  padding: EdgeInsets.symmetric(
-                      horizontal: PaddingSizes.smallPadding),
-                  child: CategoriesList(),
-                )
-              ],
-            ),
+              ),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: PaddingSizes.smallPadding),
+                child: CategoriesList(),
+              )
+            ],
           ),
         ),
-        RecipesList(),
-      ],
+      ),
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: const [
+          RecipesList(),
+        ],
+      ),
     );
   }
 }
