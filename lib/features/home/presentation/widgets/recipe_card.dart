@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:recipe_finder/features/home/presentation/presentation.export.dart';
 
 class RecipeCard extends StatelessWidget {
@@ -13,9 +15,15 @@ class RecipeCard extends StatelessWidget {
       ),
       child: InkWell(
         onTap: () async {
+          log('strMeal: ${meal.strMeal}');
+
           context.read<HomeBloc>().add(GetRecipeDetails(meal.strMeal));
           Navigator.push(
-              context, MaterialPageRoute(builder: (context) => const RecipeDetailsView()));
+            context,
+            MaterialPageRoute(
+              builder: (context) => const RecipeDetailsView(),
+            ),
+          );
         },
         child: Stack(
           children: [

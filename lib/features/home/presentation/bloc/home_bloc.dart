@@ -18,13 +18,11 @@ class HomeBloc extends Bloc<HomeEvents, HomeState> {
     add(GetLocalData());
   }
 
-  FutureOr<void> _getLocalData(
-      GetLocalData event, Emitter<HomeState> emit) async {
+  FutureOr<void> _getLocalData(GetLocalData event, Emitter<HomeState> emit) async {
     emit(state.copyWith(
       homeStateStatus: HomeStateStatus.loading,
     ));
-    var categoriesNames =
-        await getMealsUseCases.getCategoriesListNamesUseCase();
+    var categoriesNames = await getMealsUseCases.getCategoriesListNamesUseCase();
     var areasNames = await getMealsUseCases.getAreasListNamesUseCase();
     emit(state.copyWith(
       homeStateStatus: HomeStateStatus.success,
@@ -42,8 +40,7 @@ class HomeBloc extends Bloc<HomeEvents, HomeState> {
     // var meals = await getMealsUseCases
     //     .call(MealByNameParameters(name: searchController.text));
 
-    final result = await getMealsUseCases
-        .call(MealByNameParameters(name: searchController.text));
+    final result = await getMealsUseCases.call(MealByNameParameters(name: searchController.text));
     result.fold(
       (l) => emit(
         state.copyWith(
@@ -64,13 +61,12 @@ class HomeBloc extends Bloc<HomeEvents, HomeState> {
     // ));
   }
 
-  FutureOr<void> _filterByCategories(
-      FilterByCategories event, Emitter<HomeState> emit) async {
+  FutureOr<void> _filterByCategories(FilterByCategories event, Emitter<HomeState> emit) async {
     emit(state.copyWith(
       homeStateStatus: HomeStateStatus.loading,
     ));
-    var mealsList = await getMealsUseCases.getMealsByCategoryUseCase(
-        CategoryParameters(category: event.category));
+    var mealsList = await getMealsUseCases
+        .getMealsByCategoryUseCase(CategoryParameters(category: event.category));
 
     emit(state.copyWith(
       meals: mealsList.meals,
@@ -78,13 +74,11 @@ class HomeBloc extends Bloc<HomeEvents, HomeState> {
     ));
   }
 
-  FutureOr<void> _filterByAreas(
-      FilterByAreas event, Emitter<HomeState> emit) async {
+  FutureOr<void> _filterByAreas(FilterByAreas event, Emitter<HomeState> emit) async {
     emit(state.copyWith(
       homeStateStatus: HomeStateStatus.loading,
     ));
-    var meals = await getMealsUseCases
-        .getMealsByAreaUseCase(AreaParameters(area: event.area));
+    var meals = await getMealsUseCases.getMealsByAreaUseCase(AreaParameters(area: event.area));
 
     // meals.addAll(await getMealsUseCases
     //     .getMealsByAreaUseCase(AreaParameters(area: event.area)));
@@ -94,14 +88,16 @@ class HomeBloc extends Bloc<HomeEvents, HomeState> {
     ));
   }
 
-  FutureOr<void> _getRecipeDetails(
-      GetRecipeDetails event, Emitter<HomeState> emit) async {
+  FutureOr<void> _getRecipeDetails(GetRecipeDetails event, Emitter<HomeState> emit) async {
     emit(state.copyWith(
       homeStateStatus: HomeStateStatus.loading,
     ));
 
-    final result = await getMealsUseCases
-        .call(MealByNameParameters(name: searchController.text));
+    final result = await getMealsUseCases.call(
+      MealByNameParameters(
+        name: event.name,
+      ),
+    );
     result.fold(
       (l) => emit(
         state.copyWith(
